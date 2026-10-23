@@ -24,7 +24,7 @@ export const HOME_CATEGORIES = [
   { name: 'Drinks', image: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80' },
 ];
 
-export const HERO_IMAGE = 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80';
+export const HERO_IMAGE = '/images/hero.jpg';
 export const PARALLAX_IMAGE = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=80';
 
 export const BENEFITS = [

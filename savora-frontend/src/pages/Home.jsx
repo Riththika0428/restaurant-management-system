@@ -10,6 +10,7 @@ import {
   Truck,
   UtensilsCrossed,
 } from 'lucide-react';
+import toast from 'react-hot-toast';
 import useParallax from '../hooks/useParallax.js';
 import { getFeaturedFoods } from '../services/foodService.js';
 import { useCart } from '../context/CartContext.jsx';
@@ -18,7 +19,6 @@ import FoodCardSkeleton from '../components/common/SkeletonLoader.jsx';
 import FoodImage from '../components/common/FoodImage.jsx';
 import ErrorMessage from '../components/common/ErrorMessage.jsx';
 import EmptyState from '../components/common/EmptyState.jsx';
-import toast from 'react-hot-toast';
 import {
   BENEFITS,
   HERO_IMAGE,
@@ -78,34 +78,49 @@ export default function Home() {
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-medium text-muted shadow-sm">
+            <span
+              className="animate-fade-up inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-medium text-muted shadow-sm"
+              style={{ animationDelay: '0ms' }}
+            >
               <Flame size={14} className="text-orange" /> Freshly cooked for every order
             </span>
 
-            <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] sm:text-6xl">
+            <h1
+              className="animate-fade-up mt-6 font-display text-5xl font-bold leading-[1.05] sm:text-6xl"
+              style={{ animationDelay: '120ms' }}
+            >
               Savor every <em className="italic text-orange">bite</em>, delivered warm to your door.
             </h1>
 
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
+            <p
+              className="animate-fade-up mt-6 max-w-lg text-lg leading-relaxed text-muted"
+              style={{ animationDelay: '240ms' }}
+            >
               Hand-prepared starters, mains and desserts from our kitchen, packed carefully and delivered hot.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div
+              className="animate-fade-up mt-8 flex flex-wrap gap-4"
+              style={{ animationDelay: '360ms' }}
+            >
               <Link
                 to="/menu"
-                className="inline-flex items-center gap-2 rounded-full bg-orange px-7 py-3.5 font-semibold text-white shadow-lg shadow-orange/30 transition hover:bg-orange-dark"
+                className="inline-flex items-center gap-2 rounded-full bg-orange px-7 py-3.5 font-semibold text-white shadow-lg shadow-orange/30 transition duration-300 hover:-translate-y-0.5 hover:bg-orange-dark"
               >
                 Order now <ArrowRight size={18} />
               </Link>
               <a
                 href="#categories"
-                className="rounded-full border border-charcoal/15 bg-white px-7 py-3.5 font-semibold transition hover:border-charcoal"
+                className="rounded-full border border-charcoal/15 bg-white px-7 py-3.5 font-semibold transition duration-300 hover:-translate-y-0.5 hover:border-charcoal"
               >
                 Explore menu
               </a>
             </div>
 
-            <div className="mt-12 grid max-w-md grid-cols-3 gap-4 text-center text-sm">
+            <div
+              className="animate-fade-up mt-12 grid max-w-md grid-cols-3 gap-4 text-center text-sm"
+              style={{ animationDelay: '480ms' }}
+            >
               <div>
                 <Flame className="mx-auto mb-2 text-orange" size={22} />
                 <p className="font-semibold">Made fresh</p>
@@ -126,14 +141,16 @@ export default function Home() {
 
           <div className="relative">
             <div ref={heroImageRef} className="relative">
-              <div className="overflow-hidden rounded-[2rem] shadow-card">
+              <div className="animate-scale-in overflow-hidden rounded-[2rem] shadow-card">
                 <FoodImage
                   src={HERO_IMAGE}
                   alt="Freshly prepared dishes on a wooden table"
-                  className="aspect-[4/5] w-full"
+                  className="aspect-[4/5] w-full transition duration-700 hover:scale-105"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-4 rounded-2xl bg-charcoal px-6 py-4 text-cream shadow-card sm:-left-8">
+              <div
+                className="animate-float absolute -bottom-6 -left-4 rounded-2xl bg-charcoal px-6 py-4 text-cream shadow-card sm:-left-8"
+              >
                 <p className="text-xs uppercase tracking-widest text-orange">Today</p>
                 <p className="font-display text-2xl font-bold">Open now</p>
                 <p className="text-xs text-cream/70">{RESTAURANT.hours}</p>
@@ -233,7 +250,10 @@ export default function Home() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {BENEFITS.map((b) => (
-              <div key={b.title} className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm">
+              <div
+                key={b.title}
+                className="rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:bg-white/10"
+              >
                 <Star className="text-orange" size={24} />
                 <h3 className="mt-4 font-display text-xl font-bold">{b.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-cream/75">{b.text}</p>
@@ -251,7 +271,10 @@ export default function Home() {
         </div>
         <div className="grid gap-6 md:grid-cols-3">
           {OFFERS.map((offer) => (
-            <div key={offer.title} className="rounded-3xl border border-line bg-white p-7 shadow-card">
+            <div
+              key={offer.title}
+              className="rounded-3xl border border-line bg-white p-7 shadow-card transition duration-300 hover:-translate-y-1"
+            >
               <Tag className="text-orange" />
               <h3 className="mt-4 font-display text-xl font-bold">{offer.title}</h3>
               <p className="mt-2 text-sm text-muted">{offer.text}</p>
