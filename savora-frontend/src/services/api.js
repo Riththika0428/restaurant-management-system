@@ -14,9 +14,16 @@ api.interceptors.response.use(
     if (error.code === 'ECONNABORTED') {
       message = 'The request timed out. Please try again.';
     } else if (!error.response) {
-      message = 'Cannot reach the server. Check your connection.';
-    } else if (error.response.data?.message) {
-      message = error.response.data.message;
+      message = 'Cannot reach the server. Make sure the API is running on port 5000.';
+    } else {
+      const body = error.response.data;
+      const fieldErrors = Array.isArray(body?.errors) ? body.errors : [];
+
+      if (error.response.status === 422 && fieldErrors.length > 0) {
+        message = fieldErrors[0].message;
+      } else if (body?.message) {
+        message = body.message;
+      }
     }
 
     const normalized = new Error(message);

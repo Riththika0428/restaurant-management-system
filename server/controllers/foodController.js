@@ -10,8 +10,17 @@ const SORT_MAP = {
 
 const escapeRegex = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+const readString = (value, maxLength) =>
+  typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
+
 export async function listFoods(req, res) {
-  const { page = 1, limit = 12, search, category, featured, sort = 'name' } = req.query;
+  // Parse each query value explicitly so behavior does not depend on Express version details.
+  const page = Math.max(Number.parseInt(req.query.page, 10) || 1, 1);
+  const limit = Math.min(Math.max(Number.parseInt(req.query.limit, 10) || 12, 1), 50);
+  const search = readString(req.query.search, 100);
+  const category = readString(req.query.category, 50);
+  const featured = req.query.featured === 'true';
+  const sort = Object.hasOwn(SORT_MAP, req.query.sort) ? req.query.sort : 'name';
 
   const filter = { isAvailable: true };
 
