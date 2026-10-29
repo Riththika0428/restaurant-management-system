@@ -4,7 +4,13 @@ import mongoose from 'mongoose';
 export async function connectDB(uri) {
   if (mongoose.connection.readyState === 1) return mongoose.connection;
 
-  const connection = await mongoose.connect(uri, { serverSelectionTimeoutMS: 10000 });
+  const connection = await mongoose.connect(uri, {
+    serverSelectionTimeoutMS: 8000,
+    connectTimeoutMS: 8000,
+    socketTimeoutMS: 30000,
+    family: 4,
+  });
+
   console.log(`MongoDB connected: ${connection.connection.host}`);
   return connection;
 }
